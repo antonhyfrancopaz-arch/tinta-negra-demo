@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tinta Negra — Tatuajes en Miami</title>
+<meta name="description" content="Tinta Negra, estudio de tatuajes en Miami: tatuajes personalizados, cover-ups y piercing. Agenda tu cita.">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_US">
+<meta property="og:site_name" content="Tinta Negra">
+<meta property="og:title" content="Tinta Negra — Tatuajes en Miami">
+<meta property="og:description" content="Estudio de tatuajes en Miami: tatuajes personalizados, cover-ups y piercing. Agenda tu cita.">
+<!-- Al publicar, og:image (y og:url) deben ser URLs absolutas con el dominio real -->
+<meta property="og:image" content="og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Tinta Negra — estudio de tatuajes en Miami">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+<!-- Datos estructurados: solo datos reales del proyecto (sin horario, dirección ni valoraciones de ejemplo) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TattooParlor",
+  "name": "Tinta Negra",
+  "description": "Estudio de tatuajes en Miami: tatuajes personalizados, cover-ups y piercing.",
+  "telephone": "+1-305-555-0142",
+  "email": "hola@tintanegramiami.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Miami",
+    "addressRegion": "FL",
+    "addressCountry": "US"
+  },
+  "areaServed": "Miami, FL",
+  "sameAs": ["https://instagram.com/tintanegra.miami"]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@700&family=Inter:wght@300;700&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+  /* ── Tokens: todos los valores vienen de estilo-tatuajes-svz ── */
+  :root {
+    --void: #080808;          /* fondo principal */
+    --black: #000000;         /* fondos decorativos / tarjetas */
+    --surface: #171617;       /* superficie elevada */
+    --surface-2: #262525;     /* superficie secundaria */
+    --bone: #fcfcfc;          /* texto principal / bordes */
+    --ash: #d4d2d2;           /* texto secundario, labels, hairline */
+    --iron: #525252;          /* divisores */
+    --red: #fe1e34;           /* acento único */
+    --red-pure: #ff0000;      /* solo subrayado de encabezados */
+
+    --sans: "Inter", "Neue Haas Grotesk Display", system-ui, sans-serif;
+    --serif: "Playfair Display", Georgia, serif;
+    /* NUEVO (fuera del archivo de estilo): acento redondeado, solo títulos de sección */
+    --round: "Fredoka", "Nunito", system-ui, sans-serif;
+
+    --u: 8px;                 /* unidad base */
+    --r: 8px;                 /* radio tarjetas / botones */
+    --r-nav: 3px;             /* radio nav / links */
+    --inset: rgba(255,255,255,0.2) 0 2px 5px 0 inset;
+
+    --gutter: 16px;
+    --section: 24px;          /* ×2 = 48px entre secciones (móvil) */
+  }
+  @media (min-width: 768px) {
+    :root { --gutter: 32px; --section: 32px; } /* ×2 = 64px */
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--void);
+    color: var(--bone);
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, p, figure, ul, blockquote { margin: 0; padding: 0; }
+  ul { list-style: none; }
+  a { color: inherit; text-decoration: none; }
+  section[id] { scroll-margin-top: 72px; }
+
+  .wrap { max-width: 1280px; margin-inline: auto; padding-inline: var(--gutter); }
+
+  /* ── Foco visible ── */
+  :focus-visible { outline: 2px solid var(--bone); outline-offset: 3px; border-radius: var(--r-nav); }
+
+  .skip {
+    position: absolute; left: var(--gutter); top: -64px;
+    background: var(--void); border: 1px solid var(--ash); border-radius: var(--r);
+    padding: 12px 16px; z-index: 20;
+  }
+  .skip:focus { top: 8px; }
+
+  /* ── Tipografía ── */
+  .display {
+    font-weight: 700;
+    letter-spacing: -0.075em;
+    line-height: 0.92;
+  }
+  /* Acento redondeado: SOLO títulos cortos de sección (h2). Nunca párrafos ni body. */
+  .title {
+    font-family: var(--round);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 0.88;
+  }
+  .serif {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  .label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--ash);
+  }
+  .dot {
+    display: inline-block;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--red);
+  }
+  .dot--sm { width: 16px; height: 16px; }
+
+  /* Pulso sutil en el punto rojo del logo (anillo que se expande, sin sombras) */
+  .wordmark .dot { position: relative; }
+  .wordmark .dot::after {
+    content: ""; position: absolute; inset: 0;
+    border-radius: 50%;
+    border: 1px solid var(--red);
+    animation: pulse 2.6s ease-out infinite;
+  }
+  @keyframes pulse {
+    0%   { transform: scale(1);   opacity: 0.9; }
+    70%  { transform: scale(2.6); opacity: 0; }
+    100% { transform: scale(2.6); opacity: 0; }
+  }
+
+  /* ── Entrada al hacer scroll ── */
+  .js .reveal:not(.is-in) { opacity: 0; }
+  .reveal.is-in { animation: rise 700ms cubic-bezier(0.2, 0.7, 0.2, 1) var(--d, 0ms) backwards; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(32px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  /* ── Botones fantasma: texto + ↗ ── */
+  .ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    min-height: 44px;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    border-radius: var(--r-nav);
+  }
+  .ghost .arrow { display: inline-block; transition: transform 200ms ease; }
+  .ghost:hover .arrow { transform: translate(3px, -3px); }
+
+  /* único botón con borde real */
+  .btn {
+    min-height: 48px;
+    padding: 0 24px;
+    background: transparent;
+    color: var(--bone);
+    border: 1px solid var(--ash);
+    border-radius: var(--r);
+    font: 700 16px/1 var(--sans);
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: border-color 200ms ease;
+  }
+  .btn:hover { border-color: var(--bone); }
+  .btn:hover .arrow { transform: translate(3px, -3px); }
+  .btn .arrow { transition: transform 200ms ease; }
+
+  /* ── Header ── */
+  .site-header {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--void);
+    border-bottom: 1px solid var(--iron);
+  }
+  .nav {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    column-gap: 24px;
+    min-height: 64px;
+  }
+  .wordmark {
+    display: inline-flex; align-items: center; gap: 12px;
+    min-height: 44px;
+    font-size: 12px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.3em;
+  }
+  .nav ul { display: flex; gap: 8px; }
+  .nav ul a {
+    display: inline-flex; align-items: center;
+    min-height: 44px; padding: 0 12px;
+    font-size: 12px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.2em;
+    color: var(--ash);
+    border-radius: var(--r-nav);
+    transition: color 200ms ease;
+  }
+  .nav ul a:hover { color: var(--bone); }
+  @media (max-width: 479px) {
+    .nav ul a { padding: 0 6px; font-size: 11px; letter-spacing: 0.08em; }
+    .nav ul { gap: 0; }
+  }
+
+  /* ── Hero ── */
+  .hero { padding-block: 48px var(--section); }
+  .hero h1 { font-size: 16px; }
+  .h1__name { display: block; font-size: clamp(64px, 17vw, 160px); }
+  .h1__name .dot { margin-left: 8px; }
+  .h1__tag {
+    display: block; margin-top: 24px;
+    font-size: clamp(22px, 3.2vw, 32px);
+    font-weight: 700; letter-spacing: -0.03em; line-height: 1.1;
+  }
+  .hero__sub {
+    margin-top: 16px;
+    max-width: 560px;
+    font-size: 24px;
+    line-height: 1.25;
+    color: var(--ash);
+  }
+  .hero__sub strong { font-weight: 700; color: var(--bone); }
+  .hero__sub .serif { color: var(--bone); font-size: 1.1em; }
+  .hero__actions { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 8px 32px; }
+  .hero__meta {
+    margin-top: 48px; padding-top: 16px;
+    border-top: 1px solid var(--iron);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+  }
+
+  /* ── Secciones ── */
+  .section { padding-block: var(--section); border-top: 1px solid var(--iron); }
+  .section__head { margin-bottom: 32px; }
+  .section__head h2 {
+    font-size: clamp(64px, 10vw, 128px);
+  }
+  .u {
+    text-decoration: underline;
+    text-decoration-color: var(--red-pure);
+    text-decoration-thickness: 4px;
+    text-underline-offset: 0.1em;
+  }
+  .note { margin-top: 24px; color: var(--ash); font-size: 14px; }
+
+  /* ── Tarjetas ── */
+  .card {
+    background: var(--black);
+    border: 1px solid var(--ash);
+    border-radius: var(--r);
+    padding: 24px;
+    box-shadow: var(--inset);
+    transition: transform 260ms cubic-bezier(0.2, 0.7, 0.2, 1), border-color 260ms ease, background-color 260ms ease;
+  }
+  .card--featured { border-color: var(--red); }
+  @media (hover: hover) {
+    .card:hover { transform: translateY(-10px); border-color: var(--bone); background-color: var(--surface); }
+    .card--featured:hover { border-color: var(--red); }
+    .card:hover .ghost .arrow { transform: translate(3px, -3px); }
+  }
+
+  .services { display: grid; gap: 16px; }
+  @media (min-width: 900px) { .services { grid-template-columns: repeat(3, 1fr); } }
+  .service { display: flex; flex-direction: column; gap: 16px; min-height: 320px; }
+  .service h3 {
+    font-size: clamp(28px, 3vw, 36px);
+    font-weight: 700;
+    letter-spacing: -0.06em;
+    line-height: 1;
+  }
+  .service p { color: var(--ash); }
+  .service .ghost { margin-top: auto; }
+  .price {
+    display: flex; align-items: baseline; gap: 8px;
+    padding-top: 16px; border-top: 1px solid var(--iron);
+    color: var(--ash);
+  }
+  .price__n { font-size: 40px; font-weight: 700; letter-spacing: -0.06em; line-height: 1; color: var(--bone); }
+
+  /* ── Panel claro invertido: máquina interactiva ── */
+  .section--light {
+    --linen: #f3efef;
+    --muted: #525252;         /* Iron: hairlines y texto secundario sobre fondo claro */
+    background: var(--linen);
+    color: var(--void);       /* #080808, nunca negro puro */
+    border-top: 0;
+    padding-block: calc(var(--section) * 2);
+  }
+  .section--light .label { color: var(--muted); }
+  .machine { max-width: 800px; margin-inline: auto; }
+  .machine__stage {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    border: 1px solid var(--muted);
+    border-radius: var(--r);
+    background: var(--linen);
+    overflow: hidden;
+  }
+  /* El video tiene fondo blanco: multiply lo funde con el panel #f3efef */
+  .machine__stage video,
+  .machine__still {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
+  .machine__still { display: none; }
+  .machine__hint { margin-top: 16px; text-align: center; }
+  .machine__hint .hint--touch { display: none; }
+  @media (hover: none) {
+    .machine__hint .hint--hover { display: none; }
+    .machine__hint .hint--touch { display: inline; }
+  }
+
+  /* ── Galería (placeholders) ── */
+  .gallery { display: grid; gap: 16px; grid-template-columns: 1fr; align-items: start; }
+  @media (min-width: 560px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 900px) { .gallery { grid-template-columns: repeat(3, 1fr); } }
+  .tile {
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .ph {
+    background: var(--surface);
+    border: 1px solid var(--ash);
+    border-radius: var(--r);
+    box-shadow: var(--inset);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--iron);
+    font-size: 96px; font-weight: 700; letter-spacing: -0.075em; line-height: 1;
+    user-select: none;
+    transition: transform 260ms cubic-bezier(0.2, 0.7, 0.2, 1), border-color 260ms ease;
+  }
+  @media (hover: hover) {
+    .tile:hover .ph { transform: translateY(-10px); border-color: var(--bone); }
+  }
+  li:nth-child(odd) > .tile .ph { aspect-ratio: 4 / 5; }
+  li:nth-child(even) > .tile .ph { aspect-ratio: 1 / 1; }
+  .tile figcaption {
+    display: flex; justify-content: space-between; gap: 16px;
+    font-size: 14px; color: var(--ash);
+  }
+
+  /* ── Sobre nosotros ── */
+  .about__text { max-width: 720px; display: grid; gap: 16px; color: var(--ash); font-size: 18px; }
+  .about__lead { font-size: clamp(24px, 3vw, 32px); line-height: 1.2; color: var(--bone); letter-spacing: -0.02em; }
+  .about__lead strong { font-weight: 700; }
+  .about__lead .serif { font-size: 1.1em; }
+  .artists { margin-top: 48px; display: grid; gap: 16px; }
+  @media (min-width: 700px) { .artists { grid-template-columns: repeat(3, 1fr); } }
+  .artist { padding: 12px; display: flex; flex-direction: column; gap: 16px; }
+  .artist .ph { aspect-ratio: 4 / 5; box-shadow: none; font-size: 72px; }
+  .artist__body { padding: 0 12px 12px; display: grid; gap: 8px; }
+  .artist h3 { font-size: clamp(28px, 3vw, 36px); font-weight: 700; letter-spacing: -0.06em; line-height: 1; }
+  .artist p { color: var(--ash); }
+
+  /* ── Reseñas ── */
+  .reviews { display: grid; gap: 16px; }
+  @media (min-width: 900px) { .reviews { grid-template-columns: repeat(3, 1fr); } }
+  .review { display: flex; flex-direction: column; justify-content: space-between; gap: 32px; }
+  .review blockquote { font-size: 22px; line-height: 1.3; letter-spacing: -0.01em; color: var(--bone); }
+  .review figcaption { display: grid; gap: 4px; }
+  .review figcaption span:last-child { font-size: 14px; color: var(--ash); }
+
+  /* ── Horario y ubicación ── */
+  .visit { display: grid; gap: 32px; }
+  @media (min-width: 900px) { .visit { grid-template-columns: 5fr 6fr; gap: 64px; align-items: start; } }
+  .hours { border-top: 1px solid var(--iron); }
+  .hours li {
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    min-height: 56px; padding-block: 8px;
+    border-bottom: 1px solid var(--iron);
+    font-size: 18px;
+  }
+  .hours .closed { color: var(--ash); }
+  .map {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    background: var(--surface);
+    border: 1px solid var(--ash);
+    border-radius: var(--r);
+    box-shadow: var(--inset);
+    overflow: hidden;
+    color: var(--iron);
+  }
+  .map svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .map__label { position: absolute; left: 12px; bottom: 12px; padding: 4px 8px; background: var(--void); border-radius: var(--r-nav); }
+
+  /* ── Contacto ── */
+  .contact { display: grid; gap: 32px; }
+  @media (min-width: 900px) { .contact { grid-template-columns: 5fr 6fr; gap: 64px; } }
+  .contact__intro h2 { font-size: clamp(64px, 8vw, 112px); }
+  .contact__intro p { margin-top: 24px; max-width: 420px; font-size: 18px; color: var(--ash); }
+
+  .details { margin-top: 32px; max-width: 420px; border-top: 1px solid var(--iron); }
+  .details li {
+    display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;
+    min-height: 56px; padding-block: 8px;
+    border-bottom: 1px solid var(--iron);
+  }
+  .details .ghost { font-size: 18px; }
+
+  .form { display: grid; gap: 24px; }
+  .field { display: grid; gap: 8px; }
+  .field input, .field select, .field textarea {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 16px;
+    background: var(--void);
+    color: var(--bone);
+    border: 1px solid var(--ash);
+    border-radius: var(--r);
+    font: 300 16px/1.5 var(--sans);
+    transition: border-color 200ms ease;
+  }
+  .field textarea { min-height: 144px; resize: vertical; }
+  .field input:hover, .field select:hover, .field textarea:hover { border-color: var(--bone); }
+  .field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible {
+    outline: 2px solid var(--bone); outline-offset: 2px; border-color: var(--bone);
+  }
+  .field select {
+    appearance: none;
+    padding-right: 48px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none' stroke='%23d4d2d2' stroke-width='1.5'%3E%3Cpath d='M3 6l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+  }
+  .field select option { background: var(--void); color: var(--bone); }
+  .field [aria-invalid="true"] { border-color: var(--bone); }
+  .error {
+    display: none; align-items: center; gap: 8px;
+    font-size: 14px; color: var(--bone);
+  }
+  .error.is-visible { display: flex; }
+  .error::before {
+    content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--red); flex: none;
+  }
+  .form__status { min-height: 24px; }
+  .form__status:not(:empty) { padding-top: 8px; }
+  .form__row { display: flex; align-items: center; flex-wrap: wrap; gap: 16px 24px; }
+  .form__hint { font-size: 14px; color: var(--ash); }
+
+  /* ── Footer ── */
+  .site-footer {
+    background: var(--surface);
+    margin-top: var(--section);
+    padding-block: 48px;
+  }
+  .site-footer .wrap { display: grid; gap: 24px; }
+  @media (min-width: 768px) {
+    .site-footer .wrap { grid-template-columns: 1fr auto; align-items: end; }
+  }
+  .footer__brand { font-size: clamp(64px, 12vw, 128px); }
+  .footer__meta { display: grid; gap: 8px; }
+  .footer__meta a {
+    display: inline-flex; align-items: center; min-height: 44px;
+    border-radius: var(--r-nav); transition: color 200ms ease;
+  }
+  .footer__meta a:hover { color: var(--bone); }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+    .reveal { opacity: 1 !important; animation: none !important; }
+    .wordmark .dot::after { animation: none; opacity: 0; }
+    .card:hover, .tile:hover .ph { transform: none !important; }
+    /* Máquina: último fotograma estático, sin video ni interacción */
+    .machine__stage video { display: none; }
+    .machine__still { display: block; }
+    .machine__hint { display: none; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="wordmark" href="#inicio" aria-label="Tinta Negra, inicio">
+      <span class="dot dot--sm" aria-hidden="true"></span>Tinta Negra
+    </a>
+    <nav aria-label="Principal">
+      <ul>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#galeria">Galería</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <!-- HERO -->
+  <section class="hero wrap" id="inicio">
+    <h1 class="reveal">
+      <span class="display h1__name">Tinta<br>Negra<span class="dot" aria-hidden="true"></span></span>
+      <span class="h1__tag">Tatuajes en Miami</span>
+    </h1>
+    <p class="hero__sub reveal" style="--d:120ms">
+      <strong>Diseños personalizados</strong>, cover-ups <span class="serif">y</span> piercing.
+    </p>
+    <div class="hero__actions reveal" style="--d:220ms">
+      <a class="ghost" href="#contacto">Agenda tu cita <span class="arrow" aria-hidden="true">↗</span></a>
+      <a class="ghost" href="#galeria">Ver trabajos <span class="arrow" aria-hidden="true">↗</span></a>
+    </div>
+    <div class="hero__meta label reveal" style="--d:320ms">
+      <span>Miami, FL</span>
+      <span>Estudio de tatuajes</span>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="section" id="servicios" aria-labelledby="servicios-t">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 class="display title reveal" id="servicios-t"><span class="u">Servicios</span></h2>
+      </div>
+      <ul class="services">
+        <li class="card card--featured service reveal">
+          <span class="label">01</span>
+          <h3>Tatuajes personalizados</h3>
+          <p>Una pieza única diseñada contigo, del boceto a la aguja.</p>
+          <p class="price"><span class="label">Desde</span><span class="price__n">$150</span></p>
+          <a class="ghost" href="#contacto" data-service="personalizado">Consultar <span class="arrow" aria-hidden="true">↗</span></a>
+        </li>
+        <li class="card service reveal">
+          <span class="label">02</span>
+          <h3>Cover-ups</h3>
+          <p>Transformamos un tatuaje que ya no te representa en una pieza nueva.</p>
+          <p class="price"><span class="label">Desde</span><span class="price__n">$200</span></p>
+          <a class="ghost" href="#contacto" data-service="cover-up">Consultar <span class="arrow" aria-hidden="true">↗</span></a>
+        </li>
+        <li class="card service reveal">
+          <span class="label">03</span>
+          <h3>Piercing</h3>
+          <p>Perforaciones colocadas con cuidado, con asesoría sobre joyería y cicatrización.</p>
+          <p class="price"><span class="label">Desde</span><span class="price__n">$40</span></p>
+          <a class="ghost" href="#contacto" data-service="piercing">Consultar <span class="arrow" aria-hidden="true">↗</span></a>
+        </li>
+      </ul>
+      <p class="note reveal">Precios orientativos de ejemplo. El valor final depende del tamaño, la zona y el nivel de detalle.</p>
+    </div>
+  </section>
+
+  <!-- MÁQUINA INTERACTIVA -->
+  <section class="section section--light" id="maquina" aria-labelledby="maquina-t">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 class="display title reveal" id="maquina-t"><span class="u">Por dentro</span></h2>
+      </div>
+      <div class="machine reveal">
+        <div class="machine__stage" id="machine">
+          <video src="maquina.mp4" poster="maquina-inicio.png" muted playsinline preload="none" disablepictureinpicture role="img" aria-label="Máquina de tatuar que se desarma al acercar el cursor"></video>
+          <img class="machine__still" src="maquina-final.png" width="640" height="360" loading="lazy" alt="Máquina de tatuar desarmada, con cada pieza separada">
+        </div>
+        <p class="machine__hint label">
+          <span class="hint--hover">Acerca el cursor para desarmarla</span>
+          <span class="hint--touch">Desliza para desarmarla</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERÍA -->
+  <section class="section" id="galeria" aria-labelledby="galeria-t">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 class="display title reveal" id="galeria-t"><span class="u">Galería</span></h2>
+      </div>
+      <ul class="gallery">
+        <li class="reveal"><figure class="tile">
+          <div class="ph" role="img" aria-label="Espacio reservado para foto de trabajo 01">01</div>
+          <figcaption><span>Personalizado</span><span>Placeholder</span></figcaption>
+        </figure></li>
+        <li class="reveal"><figure class="tile">
+          <div class="ph" role="img" aria-label="Espacio reservado para foto de trabajo 02">02</div>
+          <figcaption><span>Cover-up</span><span>Placeholder</span></figcaption>
+        </figure></li>
+        <li class="reveal"><figure class="tile">
+          <div class="ph" role="img" aria-label="Espacio reservado para foto de trabajo 03">03</div>
+          <figcaption><span>Personalizado</span><span>Placeholder</span></figcaption>
+        </figure></li>
+        <li class="reveal"><figure class="tile">
+          <div class="ph" role="img" aria-label="Espacio reservado para foto de trabajo 04">04</div>
+          <figcaption><span>Piercing</span><span>Placeholder</span></figcaption>
+        </figure></li>
+        <li class="reveal"><figure class="tile">
+          <div class="ph" role="img" aria-label="Espacio reservado para foto de trabajo 05">05</div>
+          <figcaption><span>Cover-up</span><span>Placeholder</span></figcaption>
+        </figure></li>
+        <li class="reveal"><figure class="tile">
+          <div class="ph" role="img" aria-label="Espacio reservado para foto de trabajo 06">06</div>
+          <figcaption><span>Personalizado</span><span>Placeholder</span></figcaption>
+        </figure></li>
+      </ul>
+      <p class="note reveal">Las fotos son espacios reservados; aquí van los trabajos reales del estudio.</p>
+    </div>
+  </section>
+
+  <!-- SOBRE NOSOTROS -->
+  <section class="section" id="nosotros" aria-labelledby="nosotros-t">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 class="display title reveal" id="nosotros-t"><span class="u">Sobre</span><br><span class="u">nosotros</span></h2>
+      </div>
+      <div class="about__text reveal">
+        <p class="about__lead"><strong>Tinta Negra</strong> es un estudio de tatuajes en Miami donde cada pieza nace de una conversación y termina siendo <span class="serif">única</span>.</p>
+        <p>Escuchamos tu idea, la bocetamos contigo y la llevamos a la piel con calma. Cada artista del estudio se especializa en un estilo distinto, para que encuentres a la persona indicada para tu proyecto.</p>
+      </div>
+      <ul class="artists">
+        <li class="card artist reveal">
+          <div class="ph" role="img" aria-label="Espacio reservado para foto de Dani Ríos">DR</div>
+          <div class="artist__body">
+            <h3>Dani Ríos</h3>
+            <p class="label">Blackwork y línea fina</p>
+          </div>
+        </li>
+        <li class="card artist reveal">
+          <div class="ph" role="img" aria-label="Espacio reservado para foto de Mateo Vega">MV</div>
+          <div class="artist__body">
+            <h3>Mateo Vega</h3>
+            <p class="label">Cover-ups y realismo</p>
+          </div>
+        </li>
+        <li class="card artist reveal">
+          <div class="ph" role="img" aria-label="Espacio reservado para foto de Lucía Ferrer">LF</div>
+          <div class="artist__body">
+            <h3>Lucía Ferrer</h3>
+            <p class="label">Piercing y joyería</p>
+          </div>
+        </li>
+      </ul>
+      <p class="note reveal">Nombres y fotos de ejemplo.</p>
+    </div>
+  </section>
+
+  <!-- RESEÑAS -->
+  <section class="section" id="resenas" aria-labelledby="resenas-t">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 class="display title reveal" id="resenas-t"><span class="u">Reseñas</span></h2>
+      </div>
+      <ul class="reviews">
+        <li class="reveal"><figure class="card review" style="height:100%">
+          <blockquote>“Llegué con una idea vaga y salí con el tatuaje que ni sabía que quería. Cero presión, muy profesionales.”</blockquote>
+          <figcaption><span class="label">Camila R.</span><span>Tatuaje personalizado</span></figcaption>
+        </figure></li>
+        <li class="reveal"><figure class="card review" style="height:100%">
+          <blockquote>“Me taparon un tatuaje viejo y quedó irreconocible, en el mejor sentido. Volvería sin dudarlo.”</blockquote>
+          <figcaption><span class="label">Jorge M.</span><span>Cover-up</span></figcaption>
+        </figure></li>
+        <li class="reveal"><figure class="card review" style="height:100%">
+          <blockquote>“El piercing fue rápido y me explicaron todo el cuidado posterior. Muy buen trato.”</blockquote>
+          <figcaption><span class="label">Andrea S.</span><span>Piercing</span></figcaption>
+        </figure></li>
+      </ul>
+      <p class="note reveal">Reseñas de ejemplo para la demo.</p>
+    </div>
+  </section>
+
+  <!-- HORARIO Y UBICACIÓN -->
+  <section class="section" id="visitanos" aria-labelledby="visitanos-t">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 class="display title reveal" id="visitanos-t"><span class="u">Visítanos</span></h2>
+      </div>
+      <div class="visit">
+        <div class="reveal">
+          <ul class="hours">
+            <li><span class="label">Lun</span><span class="closed">Cerrado</span></li>
+            <li><span class="label">Mar – Vie</span><span>12:00 – 20:00</span></li>
+            <li><span class="label">Sáb</span><span>11:00 – 18:00</span></li>
+            <li><span class="label">Dom</span><span class="closed">Cerrado</span></li>
+          </ul>
+          <p class="note">Horario de ejemplo. Dirección por confirmar — Miami, FL.</p>
+        </div>
+        <div class="map reveal" style="--d:120ms" role="img" aria-label="Espacio reservado para el mapa de ubicación">
+          <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1">
+            <rect x="215" y="65" width="70" height="55" fill="#262525" stroke="none"/>
+            <path d="M50 0V300M120 0V300M190 0V300M260 0V300M330 0V300"/>
+            <path d="M0 40H400M0 100H400M0 160H400M0 220H400M0 270H400"/>
+            <path d="M0 250L400 60" stroke-width="3"/>
+            <circle cx="205" cy="152" r="10" fill="#fe1e34" stroke="none"/>
+          </svg>
+          <span class="map__label label">Mapa próximamente</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="section" id="contacto" aria-labelledby="contacto-t">
+    <div class="wrap contact">
+      <div class="contact__intro">
+        <h2 class="display title reveal" id="contacto-t"><span class="u">Cuéntanos</span> tu <span class="u">idea</span></h2>
+        <p>Cuéntanos qué tienes en mente y te respondemos para coordinar tu cita.</p>
+        <ul class="details">
+          <li><span class="label">Teléfono</span><a class="ghost" href="tel:+13055550142">(305) 555-0142 <span class="arrow" aria-hidden="true">↗</span></a></li>
+          <li><span class="label">Email</span><a class="ghost" href="mailto:hola@tintanegramiami.com">hola@tintanegramiami.com <span class="arrow" aria-hidden="true">↗</span></a></li>
+          <li><span class="label">Instagram</span><a class="ghost" href="https://instagram.com/tintanegra.miami" target="_blank" rel="noopener">@tintanegra.miami <span class="arrow" aria-hidden="true">↗</span></a></li>
+          <li><span class="label">Ubicación</span><span>Miami, FL</span></li>
+        </ul>
+      </div>
+
+      <form class="form reveal" id="form" novalidate style="--d:120ms">
+        <div class="field">
+          <label class="label" for="nombre">Nombre</label>
+          <input id="nombre" name="nombre" type="text" autocomplete="name" required aria-describedby="nombre-e">
+          <p class="error" id="nombre-e">Escribe tu nombre.</p>
+        </div>
+        <div class="field">
+          <label class="label" for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required aria-describedby="email-e">
+          <p class="error" id="email-e">Escribe un email válido.</p>
+        </div>
+        <div class="field">
+          <label class="label" for="servicio">Servicio</label>
+          <select id="servicio" name="servicio" required aria-describedby="servicio-e">
+            <option value="">Selecciona uno</option>
+            <option value="personalizado">Tatuaje personalizado</option>
+            <option value="cover-up">Cover-up</option>
+            <option value="piercing">Piercing</option>
+          </select>
+          <p class="error" id="servicio-e">Elige un servicio.</p>
+        </div>
+        <div class="field">
+          <label class="label" for="idea">Tu idea</label>
+          <textarea id="idea" name="idea" required aria-describedby="idea-e"></textarea>
+          <p class="error" id="idea-e">Cuéntanos brevemente tu idea.</p>
+        </div>
+        <div class="form__row">
+          <button class="btn" type="submit">Enviar <span class="arrow" aria-hidden="true">↗</span></button>
+          <span class="form__hint">Todos los campos son obligatorios.</span>
+        </div>
+        <p class="form__status" id="status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="footer__brand display">Tinta Negra<span class="dot" aria-hidden="true" style="margin-left:8px"></span></p>
+    <div class="footer__meta label">
+      <span>Miami, FL</span>
+      <a href="tel:+13055550142">(305) 555-0142</a>
+      <a href="mailto:hola@tintanegramiami.com">hola@tintanegramiami.com</a>
+      <a href="https://instagram.com/tintanegra.miami" target="_blank" rel="noopener">@tintanegra.miami</a>
+      <span>© <span id="year">2026</span> Tinta Negra</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ── Entrada al hacer scroll (escalonada dentro de cada grupo) ──
+  document.querySelectorAll('.services, .gallery, .artists, .reviews').forEach(group =>
+    [...group.children].forEach((el, i) => el.style.setProperty('--d', (i % 3) * 100 + 'ms'))
+  );
+  const reveals = document.querySelectorAll('.reveal');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!('IntersectionObserver' in window) || reduce) {
+    reveals.forEach(el => el.classList.add('is-in'));
+  } else {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => io.observe(el));
+  }
+
+  // ── Máquina: el fotograma del video sigue la distancia del cursor ──
+  // Lejos = inicio (armada) · cerca = final (desarmada). Sin cursor (táctil): sigue el scroll.
+  (() => {
+    const stage = document.getElementById('machine');
+    const video = stage.querySelector('video');
+    if (reduce) return;                       // reduced-motion: CSS muestra el último fotograma estático
+    video.preload = 'auto';
+    video.load();
+
+    const touch = matchMedia('(hover: none)').matches;
+    const clamp01 = n => Math.min(1, Math.max(0, n));
+    let px = null, py = null;                 // última posición del cursor (null = fuera de la ventana)
+    let target = 0, current = 0, seeking = false, raf = 0;
+
+    video.addEventListener('seeked', () => { seeking = false; });
+    if (!touch) {
+      addEventListener('pointermove', e => { px = e.clientX; py = e.clientY; }, { passive: true });
+      document.documentElement.addEventListener('mouseleave', () => { px = py = null; });
+    }
+
+    function measure() {
+      const r = stage.getBoundingClientRect();
+      if (touch) {                            // el centro del video cerca del centro de la pantalla = desarmada
+        return 1 - clamp01(Math.abs(r.top + r.height / 2 - innerHeight / 2) / (innerHeight * 0.5));
+      }
+      if (px === null) return 0;
+      const dist = Math.hypot(px - (r.left + r.width / 2), py - (r.top + r.height / 2));
+      const reach = r.width * 0.85;           // más lejos que esto = máquina armada
+      const near = r.width * 0.15;            // más cerca que esto = máquina desarmada
+      return clamp01((reach - dist) / (reach - near));
+    }
+
+    function tick() {
+      target = measure();
+      current += (target - current) * 0.12;   // suaviza y permite que retroceda
+      if (Math.abs(target - current) < 0.002) current = target;
+      const end = Math.max(0, (video.duration || 0) - 0.05);
+      const t = current * end;
+      // Un seek a la vez; si el anterior no terminó, se salta este fotograma
+      if (!seeking && video.readyState >= 1 && Math.abs(t - video.currentTime) > 1 / 48) {
+        seeking = true;
+        video.currentTime = t;
+      }
+      raf = requestAnimationFrame(tick);
+    }
+
+    // El bucle solo corre mientras la sección es visible
+    new IntersectionObserver(([e]) => {
+      if (e.isIntersecting && !raf) raf = requestAnimationFrame(tick);
+      else if (!e.isIntersecting) { cancelAnimationFrame(raf); raf = 0; }
+    }, { rootMargin: '200px 0px' }).observe(stage);
+  })();
+
+  const form = document.getElementById('form');
+  const status = document.getElementById('status');
+  const select = document.getElementById('servicio');
+
+  // Los links "Consultar" preseleccionan el servicio
+  document.querySelectorAll('[data-service]').forEach(a =>
+    a.addEventListener('click', () => { select.value = a.dataset.service; })
+  );
+
+  function check(el) {
+    const err = document.getElementById(el.id + '-e');
+    const ok = el.value.trim() !== '' && el.checkValidity();
+    el.setAttribute('aria-invalid', String(!ok));
+    err.classList.toggle('is-visible', !ok);
+    return ok;
+  }
+
+  const fields = [...form.querySelectorAll('input, select, textarea')];
+  fields.forEach(el => el.addEventListener('blur', () => check(el)));
+  fields.forEach(el => el.addEventListener('input', () => {
+    if (el.getAttribute('aria-invalid') === 'true') check(el);
+  }));
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    status.textContent = '';
+    const bad = fields.filter(el => !check(el));
+    if (bad.length) { bad[0].focus(); return; }
+    // Demo: no hay backend. Aquí iría el envío real.
+    form.reset();
+    fields.forEach(el => el.removeAttribute('aria-invalid'));
+    status.textContent = 'Recibido. Te escribiremos pronto.';
+  });
+</script>
+</body>
+</html>
